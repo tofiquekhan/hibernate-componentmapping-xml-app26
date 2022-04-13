@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    
+    <hibernate-mapping>
+    <class name="myproject.componentmapping.entity.Employee" table="emp10">
+    <id name="eno" length="5">
+    <generator class="increment"></generator>
+    </id>
+    <property name="ename" length="50"/>
+    <property name="esal" length="10"/>
+    <component name="acc" class="myproject.componentmapping.entity.Account">
+    <property name="accNo" length="15"/>
+    <property name="accName" length="10"/>
+    <property name="accType" length="10"/>
+    </component>
+    <component name="addr" class="myproject.componentmapping.entity.Address">
+    <property name="pno" length="5"/>
+    <property name="street" length="10"/>
+    <property name="city" length="10"/>
+    </component>
+    
+    
+    
+    
+    </class>
+    </hibernate-mapping>
