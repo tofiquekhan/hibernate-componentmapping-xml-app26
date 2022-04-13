@@ -17,7 +17,6 @@ public class Test {
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = null;
 		Session session = null;
-		Transaction tx = null;
 		
 		try {
 			Configuration cfg = new Configuration();
@@ -27,34 +26,22 @@ public class Test {
 			StandardServiceRegistry registry = builder.build();
 			sessionFactory = cfg.buildSessionFactory(registry);
 			session = sessionFactory.openSession();
-			tx = session.beginTransaction();
-			Employee emp = new Employee();
-			emp.setEname("CCC");
-			emp.setEsal(7000);
-			Address addr = new Address();
-			addr.setPno("103");
-			addr.setCity("Indore");
-			addr.setStreet("Ring Road");
-			emp.setAddr(addr);
-			Account acc = new Account();
-			acc.setAccNo("23103");
-			acc.setAccName("SBI Bank");
-			acc.setAccType("Saving");
-			emp.setAcc(acc);
-			int pk = (Integer)session.save(emp);
-			tx.commit();
-			System.out.println("Employee Add & PK is : "+pk);
+			Employee emp = (Employee) session.get(Employee.class, 1);
+			System.out.println(emp.getEno());
+			System.out.println(emp.getEname());
+			System.out.println(emp.getEsal());
+			System.out.println(emp.getAddr().getPno());
+			System.out.println(emp.getAddr().getStreet());
+			System.out.println(emp.getAddr().getCity());
+			System.out.println(emp.getAcc().getAccNo());
+			System.out.println(emp.getAcc().getAccName());
+			System.out.println(emp.getAcc().getAccType());
 		}catch (Exception e) {
-			tx.rollback();
 			e.printStackTrace();
 		}finally {
 			session.close();
 			sessionFactory.close();
 		}
-		
-		
-		
-		
 		
 	}
 }
