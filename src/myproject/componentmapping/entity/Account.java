@@ -1,9 +1,18 @@
 package myproject.componentmapping.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+
+@Entity
+@Embeddable
 public class Account {
 
+	@Column(name = "accno")
 	private String accNo;
+	@Column(name = "accname")
 	private String accName;
+	@Column(name = "acctype")
 	private String accType;
 	public String getAccNo() {
 		return accNo;
